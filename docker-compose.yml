@@ -1,0 +1,18 @@
+# Shared base config for both services — defined once via YAML anchor.
+x-app-base: &app-base
+  build: .
+  image: agent-fill
+  environment:
+    - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+  volumes:
+    - ./inputs:/app/inputs:ro
+    - ./outputs:/app/outputs
+
+services:
+  populate:
+    <<: *app-base
+    command: python populate_deterministic.py
+
+  benchmark:
+    <<: *app-base
+    command: python benchmark_tokens.py

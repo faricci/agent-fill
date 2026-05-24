@@ -1,0 +1,332 @@
+# Question bank for interview prep — Platform/SRE/DevOps Engineering Manager.
+#
+# Each question is pre-written and reviewed. The LLM never generates a question
+# from scratch — it only picks the right ones from this pool for a given CV
+# and places them in the right slot of the template.
+#
+# Tags describe what the question probes; the populate script uses them to
+# build a shortlist relevant to the candidate's CV.
+
+questions:
+
+  # =========================================================================
+  # Career arc & ownership
+  # =========================================================================
+  - id: q-career-1
+    area: behaviour
+    tags: [career-arc, ic-to-em-transition]
+    level: green
+    question: >
+      Walk me through the move from individual contributor to engineering
+      manager. What made that the right moment, and what surprised you in
+      the first six months?
+    expected:
+      good: >
+        Deliberate choice with clear reasoning. Names something concrete
+        they stopped doing technically and what they consciously started
+        doing instead. Mentions a specific early win or failure that shaped
+        their style.
+      weak: >
+        Vague ("it just happened", "they asked me"). No reflection on the
+        identity shift from IC to manager.
+      red_flag: >
+        Still defines self primarily in technical terms. No mention of the
+        people dimension. Or signals regret about leaving hands-on work in
+        a way that suggests they are not committed to the management track.
+
+  - id: q-career-2
+    area: behaviour
+    tags: [ownership, scope]
+    level: yellow
+    question: >
+      In your most recent role, what did you personally own end-to-end versus
+      what were you a contributor to? I want to understand where the
+      accountability line sat for you.
+    expected:
+      good: >
+        Clearly distinguishes things they were directly accountable for from
+        things they contributed to. Uses "I" and "we" deliberately.
+      weak: >
+        Uses "we" for everything. Cannot articulate personal accountability.
+      red_flag: >
+        Overclaims ownership on clearly team-wide efforts, or cannot name
+        a single thing they owned with a measurable outcome.
+
+  # =========================================================================
+  # People management
+  # =========================================================================
+  - id: q-people-1
+    area: behaviour
+    tags: [team-size, hiring, direct-reports]
+    level: yellow
+    question: >
+      What was the largest team you directly managed — not led as a tech
+      lead, but managed with direct reports? What was the spread between
+      engineers, SREs, embedded contractors?
+    expected:
+      good: >
+        Concrete number. Distinguishes direct reports from dotted-line.
+        Describes the team mix and how they structured it intentionally.
+      weak: >
+        Inflates the number to include the wider org. Cannot recall the
+        contractor versus FTE split.
+      red_flag: >
+        Team size is inconsistent with seniority elsewhere on the CV. Or
+        reveals that "management" was closer to tech lead with no people
+        processes involved.
+
+  - id: q-people-2
+    area: behaviour
+    tags: [underperformance, difficult-conversations]
+    level: red
+    question: >
+      Platform teams often carry a long-tenured engineer who is technically
+      respected but resists a new direction — IaC adoption, self-service
+      platforms, blameless culture. How have you navigated that situation?
+    expected:
+      good: >
+        Structured approach. Early direct conversation. Clear articulation
+        of the new direction and why. Finding a role for their expertise
+        in the transition. Defined timeline with checkpoints. Acknowledges
+        emotional difficulty.
+      weak: >
+        Works around the person rather than with them. Vague appeals to
+        "culture fit" without substance.
+      red_flag: >
+        Has never had this conversation. Or pure HR escalation with no
+        manager-led coaching phase.
+
+  - id: q-people-3
+    area: behaviour
+    tags: [remote, async, distributed]
+    level: red
+    question: >
+      Tell me about the last time you managed a team across multiple time
+      zones. What broke first, and how did you fix it?
+    expected:
+      good: >
+        Specific example. Identifies a concrete failure (async lag, unclear
+        ownership, meeting overload) and describes a structural fix, not a
+        behavioural nudge.
+      weak: >
+        Describes remote as "fine" with no critical reflection. Names tools
+        without describing how they changed practice.
+      red_flag: >
+        No real distributed-team experience despite the role requiring it.
+        Or solution is "more meetings" / synchronous-by-default.
+
+  # =========================================================================
+  # AWS depth
+  # =========================================================================
+  - id: q-aws-1
+    area: knowledge
+    tags: [aws, iam, security]
+    level: red
+    question: >
+      Describe the most complex AWS IAM design you've personally been
+      responsible for — cross-account roles, trust boundaries, what could
+      have gone wrong.
+    expected:
+      good: >
+        Real scenario (cross-account roles for CI/CD, service-linked roles,
+        SCPs, OIDC for secret-less auth). Articulates least-privilege
+        trade-offs. Mentions audit and rotation.
+      weak: >
+        Describes only basic IAM (users, groups, managed policies). Knows
+        concepts but can't recall a decision they owned.
+      red_flag: >
+        Conflates IAM roles with IAM users. Has no memory of designing
+        permissions — suggests the work was done by others and claimed
+        on the CV.
+
+  - id: q-aws-2
+    area: knowledge
+    tags: [aws, networking, vpc]
+    level: yellow
+    question: >
+      The last time you designed or reviewed a VPC architecture, what was
+      the specific networking decision and what drove it?
+    expected:
+      good: >
+        Recalls a specific decision (subnet CIDR planning, NAT Gateway vs
+        instance, VPC peering vs Transit Gateway, security group vs NACL).
+        Honest if their role was review rather than implementation.
+      weak: >
+        Generic answer about "public and private subnets" without a specific
+        decision.
+      red_flag: >
+        Cannot recall any VPC-level decision. Or claims hands-on but cannot
+        name a single networking constraint.
+
+  # =========================================================================
+  # Platform & developer experience
+  # =========================================================================
+  - id: q-platform-1
+    area: knowledge
+    tags: [platform-engineering, developer-experience]
+    level: yellow
+    question: >
+      How do you define "internal developer platform"? And how would you
+      measure whether yours is working?
+    expected:
+      good: >
+        Defines platform as product (paved paths, golden paths, opinionated
+        defaults). Names concrete metrics (lead time to production, change
+        failure rate, developer satisfaction, time-to-first-deploy).
+      weak: >
+        Conflates platform engineering with infrastructure or DevOps.
+        Cannot name metrics that are not infrastructure metrics.
+      red_flag: >
+        Describes platform purely as tools and infrastructure. No mention
+        of users (developers) or product thinking.
+
+  - id: q-platform-2
+    area: skill
+    tags: [platform-engineering, terraform, self-service]
+    level: yellow
+    question: >
+      Sketch the high-level design of an internal platform that lets a
+      product team deploy a new microservice to production for the first
+      time without help from the platform team. Where is Terraform, where
+      is the golden path, where are the guardrails?
+    expected:
+      good: >
+        Thinks in paved paths and abstractions, not just components.
+        Considers developer experience as a design constraint. IaC module
+        design for self-service. Guardrails as automated, not procedural.
+      weak: >
+        Describes infrastructure components without a user-journey
+        perspective. Heavy on tools, light on abstractions.
+      red_flag: >
+        Cannot describe a self-service flow at all. Assumes every deploy
+        needs platform-team involvement.
+
+  # =========================================================================
+  # CI/CD
+  # =========================================================================
+  - id: q-cicd-1
+    area: knowledge
+    tags: [cicd, github-actions, choice]
+    level: yellow
+    question: >
+      You've worked with multiple CI/CD systems over the years. Walk me
+      through a time you had to choose between them — what mattered, what
+      didn't, and what you'd do differently now.
+    expected:
+      good: >
+        Frames the choice around team adoption, maintenance cost, ecosystem
+        fit, not features. Names concrete trade-offs. Acknowledges a
+        decision they'd reconsider.
+      weak: >
+        Argues based on tool features without context. No decision
+        framework.
+      red_flag: >
+        Cannot recall a decision. Or chose based on "what we already
+        had" without examining the alternatives.
+
+  - id: q-cicd-2
+    area: skill
+    tags: [cicd, github-actions, monorepo]
+    level: red
+    question: >
+      Imagine we want to standardise on GitHub Actions across a monorepo
+      with 15 services. How would you design reusable workflow
+      architecture? Cover environment promotion, secret scoping, reusable
+      workflows.
+    expected:
+      good: >
+        Specific. Mentions workflow_call for reusable workflows,
+        environment protection rules, OIDC for AWS auth, matrix strategies,
+        centralised vs per-team trade-offs.
+      weak: >
+        Generic CI/CD answer that could apply to any platform. Maps
+        Jenkins concepts across without GitHub Actions specifics.
+      red_flag: >
+        Cannot answer. Or describes only basic push-triggered workflows.
+        Confirms shallow exposure.
+
+  # =========================================================================
+  # SRE & operations
+  # =========================================================================
+  - id: q-sre-1
+    area: knowledge
+    tags: [sre, observability, monitoring]
+    level: yellow
+    question: >
+      Walk me through your team's observability stack today — metrics,
+      logs, traces. What's the biggest pain point you've tried to solve
+      in it?
+    expected:
+      good: >
+        Names specific tools. Distinguishes signal types and their uses.
+        Identifies a concrete pain (alert fatigue, cardinality cost,
+        missing context in traces) and describes their attempt to address
+        it.
+      weak: >
+        Lists tools without architecture. No pain point identified.
+      red_flag: >
+        Cannot describe the observability stack despite claiming SRE
+        leadership. Or treats observability as "we have Grafana".
+
+  - id: q-sre-2
+    area: behaviour
+    tags: [incident, postmortem, on-call]
+    level: red
+    question: >
+      Describe a P1 incident your team owned recently. Walk me through
+      the first fifteen minutes — what you did personally, what you
+      delegated, what you'd do differently.
+    expected:
+      good: >
+        Concrete timeline. Names roles (incident commander, comms, scribe).
+        Distinguishes personal actions from team actions. Honest about
+        what they'd change.
+      weak: >
+        Generic incident-response language. Cannot pin down personal
+        decisions.
+      red_flag: >
+        Has never run a P1. Or describes a response where they were
+        primarily hands-on-keyboard rather than coordinating.
+
+  # =========================================================================
+  # CV verification (trap questions)
+  # =========================================================================
+  - id: q-trap-1
+    area: behaviour
+    tags: [trap, scope-verification]
+    level: yellow
+    question: >
+      You mention the SDLC you redesigned was adopted across teams. How
+      many teams adopted it? Which parts truly, which parts aspirationally?
+      Is it still in use today?
+    expected:
+      good: >
+        Specific numbers. Distinguishes adopted from aspirational. Honest
+        about parts that did not stick. Can name who maintains it now.
+      weak: >
+        Cannot give a count. "Adoption" turns out to mean a presentation.
+      red_flag: >
+        The story shrinks materially under questioning. Or becomes
+        defensive when pressed for specifics.
+
+  - id: q-trap-2
+    area: behaviour
+    tags: [trap, k8s, skill-honesty]
+    level: yellow
+    question: >
+      You listed Kubernetes as "basic, one year". If we asked you to lead
+      the technical direction of a K8s-based platform from day one, where
+      would you actually be in the first 90 days?
+    expected:
+      good: >
+        Honest acknowledgement of the gap. Concrete ramp-up plan (study,
+        team leverage, external expertise). Separates decisions to own
+        from decisions to delegate early. Frames 90 days as learning
+        sprint, not delivery sprint.
+      weak: >
+        Vague "I'm a fast learner". No plan. No acknowledgement of what
+        they'd need.
+      red_flag: >
+        Inflates K8s capability relative to the CV. Claims they "basically
+        know it". Shows no awareness that "basic" and "production-ready"
+        differ.
