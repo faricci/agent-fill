@@ -6,7 +6,7 @@ picks from a curated bank instead of generating, cutting tokens and
 hallucinations.
 
 Companion repository to the Medium article _AGENT-FILL: A Markdown Comment
-That Cuts LLM Costs and Hallucinations_.
+That Cuts LLM Costs and Hallucinations_: https://medium.com/@faricci_62865/agent-fill-a-markdown-comment-that-cuts-llm-costs-and-hallucinations-580e84d370e5 
 
 ---
 
@@ -76,7 +76,7 @@ The benchmark prints a comparison table and saves both model outputs:
 Open them side by side to compare quality, not just cost.
 
 If you see `WARNING: output was truncated`, raise `MAX_OUTPUT_TOKENS`
-in `benchmark_tokens.py` and rerun.
+in `benchmark_tokens.py` and rerun. Depending on the token number you may want to change model as well.
 
 ## Quick start (local Python)
 
